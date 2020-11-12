@@ -332,7 +332,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header"></h1>
-                <h1><b>Admin</b></h1>
+
 
                 @yield('content')
             </div>
