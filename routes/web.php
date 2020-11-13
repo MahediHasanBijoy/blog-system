@@ -28,4 +28,3 @@ Route::get('/admin', function(){
 
 Route::resource('/admin/users', 'AdminUsersController');
 
-// Route::post('/admin/users/ceate', 'AdminUsersController@store');
