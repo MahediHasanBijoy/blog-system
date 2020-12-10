@@ -8,6 +8,7 @@ use App\Http\Requests\UsersEditRequest;
 use App\User;
 use App\Role;
 use App\Photo;
+use Illuminate\Support\Facades\Session;
 
 
 class AdminUsersController extends Controller
@@ -21,6 +22,7 @@ class AdminUsersController extends Controller
     {
         $users = User::all();
         
+
         return view('admin.users.index', compact('users'));
 
     }
@@ -69,6 +71,7 @@ class AdminUsersController extends Controller
         }
 
         
+
 
         User::create($input);
 
@@ -146,6 +149,19 @@ class AdminUsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        $user = User::findOrFail($id);
+
+        //removing image from public folder
+        unlink(public_path().'/'.$user->photo->file);
+
+        $user->delete();
+
+        //Creating session flash message for showing deleted notification in index page.
+        Session::flash('delete_user' , 'The user has been deleted');
+
+        return redirect('admin/users');   
+    
+
     }
 }

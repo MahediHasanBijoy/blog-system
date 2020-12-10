@@ -9,7 +9,7 @@
 	<div class="row">
 
 		<div class="col-sm-3">
-			<img src="{{$user->photo?$user->photo->file:'http://placehold.it/400x400'}}" alt="" class="img-responsive img-rounded">
+			<img src="{{$user->photo ? asset($user->photo->file) : 'http://placehold.it/400x400'}}" alt="" class="img-responsive img-rounded">
 		</div>
 
 		<div class="col-sm-9">
@@ -60,7 +60,17 @@
 				</div>
 
 				<div class="form-group">
-					<button class="btn btn-primary" type="submit" name="submit">Create User</button>
+					<button class="btn btn-primary col-sm-6" type="submit" name="submit">Create User</button>
+				</div>
+			</form>
+
+
+
+			<form  action="{{route('users.destroy', $user->id)}}" method="post">
+				@method('DELETE')
+				@csrf
+				<div class="form-group">
+					<button class="btn btn-danger col-sm-6" type="submit" name="submit">Delete User</button>
 				</div>
 			</form>
 
