@@ -17,8 +17,10 @@
 			<div class="form-group">
 				<label for="category_id">Category:</label>
 				<select name="category_id" id="category_id" class="form-control">
-					<option value="1">PHP</option>
-					<option value="2">Javascript</option>
+					<option value="" selected="selected">Choose Categories</option>
+					@foreach ($categories as $key=>$value)
+					<option value="{{$key}}">{{$value}}</option>
+					@endforeach
 				</select>
 			</div>
 			<div class="form-group">
